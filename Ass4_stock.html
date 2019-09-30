@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jSON jQuery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+</head>
+<body>
+    <div class="container" style="margin-top: 0px">
+        <h3 style="color: white;
+            background-color: black; text-align: center"><br>Stock Management<br><br></h3>
+        <div class="row">
+        <div class="col-6">
+        <form>
+        <br>
+        <div class="form-group">
+        <label>Item Name</label><input type="text" class="form-control" aria-describedby="emailHelp" id="t1"/><br></div>
+        <label>Item Code</label><input type="text" class="form-control" id="t2"/><br>
+        <label>Quantity</label><input type="number"class="form-control" id="n1"/><br>
+        <label>Price</label><input type="number"class="form-control" id="n2"/><br>
+        <button type="button" id="btn1" style="background-color: black;color:white">Add rows</button>
+        </form>
+        </div>
+        <div class="col-6">
+          <br>
+        <table border="1px solid black">
+            <thead style="background-color: black;color:white;line-height: 50px;">
+                <tr>
+                    <th>ID</th>
+                    <th>Text 1</th>
+                    <th>Text 2</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="tb">
+                
+            </tbody>
+        </table>
+        <h4 id="h"></h4><br><br>
+      </div>
+    </div>  <br>
+        <!-- Button trigger modal -->
+        <div style="margin-left: 400px"
+    <button type="button" id="btn2" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+        Update Address
+      </button></div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Stock Management</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4>Update Address</h4>
+              <label>line 1</label><input type="text" id="a1"/>
+              <label>line 2</label><input type="text" id="a2"/>
+              <label>line 3</label><input type="text" id="a3"/>
+              <label>State</label><input type="text" id="a4"/>
+              <label>country</label><input type="text" id="a5"/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="up" class="btn btn-primary" data-dismiss="modal">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+         <!-- Button trigger modal -->
+    <button type="button" id="btn3" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+            View Invoice
+          </button>
+          <br><br>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle1">Stock Management</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                        <table border="1px solid black">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Text 1</th>
+                                        <th>Text 2</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb1">
+                                    
+                                </tbody>
+                            </table>
+                            <h4 id="h1"></h4><br><br>
+                            <h4>Address</h4>
+                            <h3 id="h2"></h3>
+                            <h2 id="h3"></h2>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" id="up2" class="btn btn-primary" data-dismiss="modal">Order</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script>
+                var arr=[],sum=0,id1=1;
+                $("#btn1").click(function(){
+                    //var id1=$("#i1").val();
+                    var text1=$("#t1").val();
+                    var text2=$("#t2").val();
+                    var qty=parseInt($("#n1").val());
+                    var price=parseInt($("#n2").val());
+                    arr+="<tr><td>"+(id1++)+"</td><td>"+text1+"</td><td>"+text2+"</td><td>"+qty+"</td><td>"+price+"</td></tr>";
+                    $("#tb").html(arr);
+                    sum+=qty*price;
+                    $("#h").html("total= "+sum);
+                });
+                var add=[];
+                $("#up").click(function(){
+                    var ad1=$("#a1").val();
+                    var ad2=$("#a2").val();
+                    var ad3=$("#a3").val();
+                    var ad4=$("#a4").val();
+                    var ad5=$("#a5").val();
+                    add+=ad1+","+ad2+","+ad3+"<br>"+ad4+"<br>"+ad5;
+                    
+                });
+                
+                $("#btn3").click(function(){
+                    
+                    //var id1=$("#i1").val();
+                    $("#tb1").html(arr);
+                    //sum+=qty*price;
+                    $("#h1").html("total= "+sum);
+                    $("#h2").html(add);
+                    $("#h3").html(disp);
+                });
+                $("#up2").click(function(){
+                    alert("Your order has been placed");
+                });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
